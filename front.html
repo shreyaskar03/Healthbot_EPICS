@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Chatbot</title>
+</head>
+<body>
+    <h1>MindMate Chatbot</h1>
+    <textarea id="userInput" rows="4" cols="50"></textarea><br><br>
+    <button onclick="sendMessage()">Send</button>
+    <h2>Response:</h2>
+    <p id="response"></p>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const responseElement = document.getElementById('response');
+
+            const data = {
+                message: userInput
+            };
+
+            const response = await fetch('http://127.0.0.1:8000/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const responseData = await response.json();
+            responseElement.innerHTML = responseData.response;
+        }
+    </script>
+</body>
+</html>

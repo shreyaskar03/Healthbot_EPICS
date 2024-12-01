@@ -6,7 +6,7 @@ import os
 import google.generativeai as genai
 
 # Load the API key
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+GOOGLE_API_KEY = os.getenv("AIzaSyDuqwpR0CULG5-vw5QDyi9uVDhNUyv9g9M")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 if GOOGLE_API_KEY:
@@ -28,10 +28,11 @@ safety_settings = [
 ]
 
 system_instruction = """
-You are Kanishk, a mental health chatbot designed to provide empathetic support and general mental health advice. 
+You are MindMate, a mental health chatbot designed to provide empathetic support and general mental health advice. 
 Your goal is to engage users in meaningful conversations, make them feel valued, and encourage positivity. 
 When needed, suggest seeing a mental health professional for further assistance.
 Avoid providing diagnostic or medical advice and focus on emotional support.
+Don't reply to any other thing except the mental health cionversations.
 """
 
 # FastAPI application
@@ -39,7 +40,7 @@ app = FastAPI()
 
 # Allow CORS for frontend integration
 origins = [
-    "https://your-frontend-url.com",
+    "http://127.0.0.1:5500/front.html",
     "http://localhost:3000"
 ]
 app.add_middleware(
